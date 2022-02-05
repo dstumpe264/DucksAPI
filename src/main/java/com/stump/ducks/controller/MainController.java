@@ -1,10 +1,7 @@
 package com.stump.ducks.controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,20 +20,20 @@ public class MainController {
 	MainController(DuckRepository duckRepository){
 		this.duckRepository = duckRepository;
 		
-		Scanner sc = new Scanner(System.in);
-		String name;
-
-		while (true) {
-			System.out.println("Add a duck?");
-			if(sc.nextLine().equals("y")) {
-				System.out.println("Full Name: ");
-				name = sc.nextLine();
-				newDuck(name);
-			} else {
-				break;
-			}
-			
-		}
+//		Scanner sc = new Scanner(System.in);
+//		String name;
+//
+//		while (true) {
+//			System.out.println("Add a duck?");
+//			if(sc.nextLine().equals("y")) {
+//				System.out.println("Full Name: ");
+//				name = sc.nextLine();
+//				newDuck(name);
+//			} else {
+//				break;
+//			}
+//			
+//		}
 	}
 	
 	Duck newDuck(String name) {
@@ -46,22 +43,27 @@ public class MainController {
 	
 	
 	
-//	// Get all Ducks
-//	@GetMapping(path="/ducks")
-//	Iterable<Duck> all(){
-//		return duckRepository.findAll();
-//	}
-//	
-//	@PostMapping(path="/ducks")
-//	Duck newDuck(@RequestBody Duck newDuck) {
-//		return duckRepository.save(newDuck);
-//	}
-//	
-//	@GetMapping(path="ducks/{id}")
-//	Optional<Duck> one(@PathVariable Integer id) {
-//		return duckRepository.findById(id);
-////				.orElseThrow(() -> new DuckNotFoundException(id));
-//	}
+	// Get all Ducks
+	@GetMapping(path="/ducks")
+	Iterable<Duck> all(){
+		return duckRepository.findAll();
+	}
+	
+	@PostMapping(path="/ducks")
+	Duck newDuck(@RequestBody Duck newDuck) {
+		return duckRepository.save(newDuck);
+	}
+	
+	@GetMapping(path="/ducks/{id}")
+	Duck one(@PathVariable Long id) {
+		return duckRepository.findById(id).get();
+//				.orElseThrow(() -> new DuckNotFoundException(id));
+	}
+	
+	  @DeleteMapping("/ducks/{id}")
+	  void deleteEmployee(@PathVariable Long id) {
+	    duckRepository.deleteById(id);
+	  }
 	
 	
 	@GetMapping(path="/ping")
