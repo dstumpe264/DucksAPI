@@ -35,7 +35,7 @@ public class DucksApplication {
 			log.info("");
 
 			// fetch an individual customer by ID
-			Duck duck = repository.findById((long) 3).get();
+			Duck duck = repository.findById(6l);
 			log.info("Customer found with findById(1):");
 			log.info("--------------------------------");
 			log.info(duck.toString());

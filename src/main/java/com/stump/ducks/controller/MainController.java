@@ -60,10 +60,10 @@ public class MainController {
 //				.orElseThrow(() -> new DuckNotFoundException(id));
 	}
 	
-	  @DeleteMapping("/ducks/{id}")
-	  void deleteEmployee(@PathVariable Long id) {
-	    duckRepository.deleteById(id);
-	  }
+	@DeleteMapping("/ducks/{id}")
+	void deleteEmployee(@PathVariable Long id) {
+		duckRepository.deleteById(id);
+	}
 	
 	
 	@GetMapping(path="/ping")

@@ -15,7 +15,7 @@ public interface DuckRepository extends JpaRepository<Duck, Long> {
 	
 	List<Duck> findByName(@Param("name") String name);
 
-//	Optional<Duck> findById(Long l);
+	Duck findById(long l);
 	
 	Duck getById(Long l);
 	
